@@ -7,7 +7,9 @@ import Contact from './components/Contact'
 Vue.use(Router)
 
 export default new Router({
-  routes: [{ path: '/', name: 'home', component: Carousel },
-  { path: '/profile', name: 'profile', component: Profile },
-  { path: '/contact', name: 'contact', component: Contact }]
+  routes: [
+    { path: '/', name: 'home', component: Carousel },
+    { path: '/profile', name: 'profile', component: Profile },
+    { path: '/contact', name: 'contact', component: Contact }
+  ]
 })

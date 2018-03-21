@@ -1,13 +1,16 @@
 <template>
   <div class='carousel-view'>
-    <transition-group
-      class='carousel'
-      tag="div">
-      <div
-        v-for="slide in slides"
-        class='slide'
-        :key="slide.id">
-        <img v-bind:src="slide.url" />
+    <transition-group class='carousel' tag="div">
+      <div v-for="slide in slides" class='slide' :key="slide.id">
+
+
+
+
+
+    <router-link :to="{ name: 'magazine', params: {mag: slide.title }}">
+          <img v-bind:src="slide.url" />
+        </router-link>
+
         <h4> {{ slide.title }} </h4>
       </div>
     </transition-group>
@@ -24,18 +27,18 @@ data () {
   return {
     slides: [
       {
-        title: 'I am Slide A',
+        title: 'mag1',
         id: 1,
         url:'https://placeimg.com/640/480/tech'
       },
       {
-        title: 'I am Slide B',
+        title: 'mag2',
         id: 2,
         url:'https://placeimg.com/640/480/people'
 
       },
       {
-        title: 'I am Slide C',
+        title: 'mag3',
         id: 3,
         url:'https://placeimg.com/640/480/animals'
 
