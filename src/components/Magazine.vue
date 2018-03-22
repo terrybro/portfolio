@@ -4,11 +4,11 @@
       class='carousel'
       tag="div">
       <div
-        v-for="slide in slides.mag1"
+        v-for="issue in getCurrIssue()"
         class='slide'
-        :key="slide.id">
-        <img v-bind:src="slide.url" />
-        <h4> {{ slide.title }} </h4>
+        :key="issue.id">
+        <img v-bind:src="issue.url" />
+        <h4> {{ issue.title }}</h4>
       </div>
     </transition-group>
     <div class='carousel-controls'>
@@ -22,7 +22,8 @@
 export default {
 data () {
   return {
-    slides:{
+
+    issues:{
         mag1: [
           {
             title: 'I am issue1',
@@ -37,7 +38,7 @@ data () {
           {
             title: 'I am issue3',
             id: 3,
-            url:'https://placeimg.com/640/480/tech'
+            url:'https://placeimg.com/640/480/architecture'
           },
 
         ],
@@ -50,7 +51,7 @@ data () {
           {
             title: 'I am issue2',
             id: 2,
-            url:'https://placeimg.com/640/480/tech'
+            url:'https://placeimg.com/640/480/people'
           },
           {
             title: 'I am issue3',
@@ -58,18 +59,43 @@ data () {
             url:'https://placeimg.com/640/480/tech'
           },
 
+        ],
+        mag3: [
+          {
+            title: 'I am issue1',
+            id: 1,
+            url:'http://lorempixel.com/output/people-q-c-644-480-8.jpg'
+          },
+          {
+            title: 'I am issue2',
+            id: 2,
+            url:'http://lorempixel.com/output/people-q-c-644-480-9.jpg'
+          },
+          {
+            title: 'I am issue3',
+            id: 3,
+            url:'http://lorempixel.com/output/people-q-c-644-480-7.jpg'
+          },
+
         ]
     }
   }
 },
 methods: {
+  getCurrIssue(){
+    let currMag = this.$route.params.mag;
+    return this.issues[currMag];
+  },
+
   next () {
-    const first = this.slides.mag1.shift()
-    this.slides.mag1 = this.slides.mag1.concat(first)
+  let currMag = this.$route.params.mag;
+    const first = this.issues[currMag].shift()
+    this.issues[currMag] = this.issues[currMag].concat(first)
   },
   previous () {
-    const last = this.slides.mag1.pop()
-    this.slides.mag1 = [last].concat(this.slides.mag1)
+  let currMag = this.$route.params.mag;
+    const last = this.issues[currMag].pop()
+    this.issues[currMag] = [last].concat(this.issues[currMag])
   }
 }
 }
